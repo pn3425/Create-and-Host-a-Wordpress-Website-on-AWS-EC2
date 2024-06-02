@@ -38,5 +38,37 @@ You can set up WordPress effortlessly using AWS Lightsail with just one click, b
     Now you are connected to the virtual computer that you created.
 
 ## 4)Configuring & installing Apache, Mysql Database and Wordpress
-    **Now we need to install Apache web server on the instance**, so type the command
+    4.1) Now we need to install Apache web server on the instance, 
+    so type the command in the mobaxterma terminal of your instance 
+    command - sudo apt install apache
+    To cross check whether the apache server is working go on tab in chrome or any web browser
+    and type http://public ipv4 address, and check if you are able to see Apache2 Default page.
+
+    4.2) Now we will have to install PHP runtime on the instance, since wordpess is built on PHP
+    and also mysql connecter for PHp is installed
+    command - sudo apt install php libapache2-mod-php php-mysql
+    
+    4.3) Install MySQL server for the database
+    command - sudo apt install mysql-server
+    A small configuration -> we need to change the MySQL authentication plugin to MySQL native password, so that we can login in the MySQL server by a normal password that is what is required to install wordpress
+
+    First login to the sql prompt
+    command - sudo MySQL -u root
+
+    To change authentication plugin 
+    command - ALTER USER 'root'@localhost IDENTIFIED with mysql_native_password BY 'enterpass';
+
+    So other than root we need to create a separate user to use the wordpress
+    command - CREATE USER 'wp_user'@localhost IDENTIFIED BY 'enterpass';
+    
+    4.4) NOW we need to create a separate database to use with wordpress
+    command - CREATE DATABASE wp;
+
+    Assign all the priviligies to the database and to the user that you created.
+    command - GRANT ALL PRIVILEGES ON wp.* TO 'wp_user'@localhost;
+    Hence SQL SERVER IS ALL CONFIGURED 
+    Hold ctrl d to come out of the sql server
+
+    
+    
     
