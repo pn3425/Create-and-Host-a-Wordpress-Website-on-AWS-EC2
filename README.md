@@ -26,7 +26,7 @@ You can set up WordPress effortlessly using AWS Lightsail with just one click, b
         -> Click on Actions, then click on Associate Elastic IP address.
         -> In the dialog box, choose your instance, and click on the Associate button to assign it to the virtual computer.
 
-## 3) Access instance on MobaXterma SSH Client
+## 3) Access instance on MobaXterm SSH Client
     To connect to the instance you created, you will need an SSH client.
 
     -> Install Mobaxterm SSH client and open it.
@@ -69,6 +69,51 @@ You can set up WordPress effortlessly using AWS Lightsail with just one click, b
     Hence SQL SERVER IS ALL CONFIGURED 
     Hold ctrl d to come out of the sql server
 
-    
+    4.5) Now we can install WordPress
+       -> Navigate to the temp directory:
+        Command: cd /tmp
+    -> Open a web browser, go to wordpress.org, and click on Get WordPress.
+    -> Copy the download link of the tar.gz file.
+    -> Return to the terminal of Mobaxterm and run:
+        Command: wget [paste the link] to download WordPress.
+    -> Type ls and unzip the file by writing:
+        Command: tar -xvf latest.tar.gz (Name of the archive)
+    -> Type ls again.
+    -> A WordPress folder will be displayed. Move this folder to the document root of Apache:
+        Command: sudo mv wordpress/ /var/www/html/
+    -> Navigate to the document root:
+        Command: cd /var/www/html/
+        You will find the WordPress folder there.
+
+    Now in the browser, type your ip address of the instance/wordpress
+        Now the WordPress installation screen will appear.
+    -> Enter the following information:
+        Database name: wp
+        Username: wp_user
+        Password: Testpassword@123
+        Database host: localhost
+        Table prefix: wp_
+        Click on Submit.
+    -> If you get an error: "Unable to write to wp-config.php file," follow these steps:
+        Copy the code displayed.
+        Go to the terminal and navigate to the WordPress directory:
+            Command: cd /var/www/html/wordpress/
+        Create a new file called wp-config.php:
+            Command: nano wp-config.php
+        Paste the copied code and save it. Then return to the browser and click on Run the installation.
+    -> Enter the required details and click on Install WordPress.
+       You will be directed to the login page for WordPress (Admin side).
+       To see your website, enter your IP address followed by /wordpress in the browser.
+
+    Now we just want to enter the ip and get the website instead of writing ip add/wordpress.
+        -> Come back to the terminal:
+        Command: cd /etc/apache2/sites-available/
+    -> Edit the configuration file 000-default.conf:
+        Open it with a sudo editor by typing:
+            Command: sudo nano 000-default.conf
+        Change the DocumentRoot to /var/www/html/wordpress
+    -> Restart Apache:
+        Command: sudo systemctl restart apache2
+    Now if you refresh the earlier browser page, you will get the WordPress page.
     
     
