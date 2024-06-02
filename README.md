@@ -34,9 +34,9 @@ You can set up WordPress effortlessly using AWS Lightsail with just one click, b
     -> In the session window dialog box under SSH settings, enter the Remote host IPv4 public address of the virtual computer that you created using AWS EC2.
     -> Enter the username. If you don't know the username, go to the EC2 dashboard, right-click on the EC2 instance you created, and then click on Connect. Further click on the SSH client option to find the username.
     -> In Mobaxterm, click on the Advanced SSH settings, select the radio button for USE PRIVATE KEY, and then browse for the private key (the notepad file that was downloaded).
-    ->Finally, click on the OK button.
+    -> Finally, click on the OK button.
     Now you are connected to the virtual computer that you created.
 
 ## 4)Configuring & installing Apache, Mysql Database and Wordpress
-    Now we need to install Apache web server on the instance, so type the command
+    **Now we need to install Apache web server on the instance**, so type the command
     
